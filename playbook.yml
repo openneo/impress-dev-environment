@@ -1,0 +1,7 @@
+---
+- name: Install Dress to Impress
+  hosts: web
+  sudo: yes
+
+  roles:
+    - impress

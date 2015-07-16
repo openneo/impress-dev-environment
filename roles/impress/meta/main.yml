@@ -1,0 +1,5 @@
+---
+dependencies:
+  - geerlingguy.git  # some of our gems are cloned directly from github
+  - nginx-conf
+  - ruby

@@ -1,0 +1,4 @@
+---
+dependencies:
+  # Just use Passenger's ruby
+  - abtris.nginx-passenger

@@ -1,0 +1,21 @@
+---
+- name: Install Ruby development headers
+  apt: name={{ item }} state=latest
+  with_items:
+    - build-essential
+    - ruby-dev
+
+- name: Install Nokogiri development headers
+  apt: name={{ item }} state=latest
+  with_items:
+    - libxml2-dev
+    - libxslt-dev
+
+- name: Install MySQL development headers
+  apt: name=libmysqlclient-dev state=latest
+
+- name: Install Curl development headers
+  apt: name=libcurl4-gnutls-dev state=latest
+
+- name: Install Bundler
+  gem: name=bundler state=latest user_install=no
