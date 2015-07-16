@@ -5,9 +5,6 @@
   local_action: git repo=https://github.com/openneo/impress dest=apps/impress update=no
   sudo: false
 
-- name: Install Dress to Impress gems
-  bundler: state=present exclude_groups=production chdir=/vagrant/apps/impress
-
 - name: Bootstrap Dress to Impress ENV variables
   # If you override env.yml, we won't replace it. (force=no)
   local_action: template src={{ role_path }}/defaults/env.yml.example dest={{ role_path }}/defaults/env.yml force=no
@@ -15,6 +12,18 @@
 
 - name: Load Dress to Impress ENV variables
   include_vars: "{{ role_path }}/defaults/env.yml"
+
+- name: Write Dress to Impress ENV variables to .env file
+  template: src=dotenv dest={{ app_root }}/.env
+
+- name: Install Dress to Impress gems
+  bundler: state=present exclude_groups=production chdir={{ app_root }}
+
+- name: Bootstrap Impress database
+  shell: bundle exec rake db:create db:schema:load db:seed
+  args:
+    chdir: "{{ app_root }}"
+  run_once: true
 
 - name: Configure Impress nginx site
   template: src=impress.conf dest=/etc/nginx/sites-enabled/impress.conf

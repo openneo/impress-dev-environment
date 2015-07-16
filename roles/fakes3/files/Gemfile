@@ -1,0 +1,1 @@
+gem 'fakes3', git: 'https://github.com/joevandyk/fake-s3.git'

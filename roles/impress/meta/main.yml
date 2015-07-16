@@ -1,6 +1,8 @@
 ---
 dependencies:
+  - fakes3  # it's like S3, but fake!
   - geerlingguy.git  # some of our gems are cloned directly from github
   - laggyluke.nodejs  # rails execjs runtime
+  - mysql
   - nginx-conf
   - ruby
