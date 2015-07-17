@@ -40,6 +40,10 @@ First, clone this repository to your local machine, anywhere you like.
     git clone https://github.com/openneo/impress-dev-environment.git
     cd impress-dev-environment
 
+Next, install the Ansible modules that we depend on:
+
+    sudo ansible-galaxy install -r requirements.txt
+
 Now we're ready to create a Dress to Impress VM. This might take a few minutes.
 
     vagrant up
