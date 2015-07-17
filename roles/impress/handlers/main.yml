@@ -1,0 +1,3 @@
+---
+- name: restart impress-resque
+  service: name=impress-resque state=restarted

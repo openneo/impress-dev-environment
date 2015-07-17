@@ -25,6 +25,13 @@
     chdir: "{{ app_root }}"
   run_once: true
 
+- name: Install Redis server
+  apt: name=redis-server state=latest
+
+- name: Create Resque service
+  template: src=resque.init.d dest=/etc/init.d/impress-resque mode="u=rwx,go=rx"
+  notify: restart impress-resque
+
 - name: Configure Impress nginx site
   template: src=impress.conf dest=/etc/nginx/sites-enabled/
   notify: reload nginx

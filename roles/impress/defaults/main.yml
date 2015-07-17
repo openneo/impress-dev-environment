@@ -1,2 +1,3 @@
 ---
 app_root: /vagrant/apps/impress
+impress_resque_pidfile_path: /var/run/impress-resque.pid
