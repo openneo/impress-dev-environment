@@ -4,6 +4,15 @@ Oh, awesome! You wanna contribute to Dress to Impress? I'm super excited to have
 
 ## Installation
 
+### Installing Git
+
+First off: if you don't have the Git client on your computer yet, that's important for working with Github. [Installing git is easy][git-install], especially on Ubuntu:
+
+    sudo apt-get install git
+
+  [git-install]: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+
+
 ### Installing Vagrant + Ansible
 
 To keep the environment consistent, automatically reproducible, and far away from the other stuff on your machine, we develop Dress to Impress inside a virtual machine. [Vagrant][vagrant] and [Ansible][ansible] help us create and manage this VM so that the process is transparent to you :)
@@ -20,15 +29,10 @@ For example, on Ubuntu, the install process looks something like this:
     git clone git://github.com/ansible/ansible.git --recursive
     echo -e '\nsource ~/ansible/hacking/env-setup > /dev/null' >> ~/.bashrc
 
-Also, if you don't have the Git client on your computer yet, that's important for working with Github. [Installing git is easy][git-install], especially on Ubuntu:
-
-    sudo apt-get install git
-
   [vagrant]: https://www.vagrantup.com/
   [vagrant-install]: https://www.vagrantup.com/downloads.html
   [ansible]: http://docs.ansible.com/index.html
   [ansible-install]: http://docs.ansible.com/intro_installation.html#running-from-source
-  [git-install]: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 
 
 ### Installing the Dress to Impress development environment
