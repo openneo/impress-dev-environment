@@ -4,19 +4,19 @@
 
 ---
 - name: Create FakeS3 source directory
-  file: path={{ source_path }} state=directory
+  file: path={{ fakes3_source_path }} state=directory
 
 - name: Create FakeS3 Gemfile
   # This fork of the gem will respond to TERM signals, so we can stop it as a service.
   # But we gotta jump through more hoops to use it.
-  copy: src=Gemfile dest={{ source_path }}
+  copy: src=Gemfile dest={{ fakes3_source_path }}
 
 - name: Install FakeS3 gem
-  bundler: state=present chdir={{ source_path }} user_install=no binstub_directory=bin
+  bundler: state=present chdir={{ fakes3_source_path }} user_install=no binstub_directory=bin
   notify: restart fakes3
 
 - name: Create FakeS3 data directory
-  file: path={{ data_path }} state=directory
+  file: path={{ fakes3_data_path }} state=directory
 
 - name: Install FakeS3 daemon
   template: src=init.d dest=/etc/init.d/fakes3 mode="u=rwx,go=rx"

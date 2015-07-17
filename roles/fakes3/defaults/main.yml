@@ -1,5 +1,5 @@
 ---
-data_path: /usr/local/var/fakes3/data
-source_path: /usr/local/var/fakes3/source
-pidfile_path: /var/run/fakes3.pid
-port: 4000
+fakes3_data_path: /usr/local/var/fakes3
+fakes3_source_path: /usr/local/share/fakes3
+fakes3_pidfile_path: /var/run/fakes3.pid
+fakes3_port: 4000

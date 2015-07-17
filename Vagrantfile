@@ -4,12 +4,16 @@
 Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/trusty64"
 
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 1024
+  end
+
   # Randomly generated 192.168.X.X IP address, to avoid conflicts :)
   config.vm.network "private_network", ip: "192.168.171.5"
 
   config.hostmanager.enabled = true
   config.hostmanager.manage_host = true
-  config.hostmanager.aliases = %w(impress.dev.openneo.net)
+  config.hostmanager.aliases = %w(impress.dev.openneo.net neopia.dev.openneo.net)
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on

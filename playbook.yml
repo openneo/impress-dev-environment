@@ -4,4 +4,5 @@
   sudo: yes
 
   roles:
+    - neopia
     - impress

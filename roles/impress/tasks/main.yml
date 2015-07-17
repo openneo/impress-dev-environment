@@ -26,5 +26,5 @@
   run_once: true
 
 - name: Configure Impress nginx site
-  template: src=impress.conf dest=/etc/nginx/sites-enabled/impress.conf
+  template: src=impress.conf dest=/etc/nginx/sites-enabled/
   notify: reload nginx

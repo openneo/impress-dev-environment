@@ -1,9 +1,11 @@
 #!/bin/sh
 
-SERVICE_NAME=fakes3
-DAEMON={{ fakes3_source_path }}/bin/fakes3
-DAEMON_OPTS="-r {{ fakes3_data_path }} -p {{ fakes3_port }}"
-PIDFILE={{ fakes3_pidfile_path }}
+GOPATH=$(sudo bash -lc 'echo $GOPATH')
+
+SERVICE_NAME=neopia
+DAEMON=$GOPATH/bin/neopia
+DAEMON_OPTS="--port={{ neopia_port }} --impress=localhost --pingInterval={{ neopia_ping_interval }}"
+PIDFILE={{ neopia_pidfile_path }}
 
 if [ ! -x $DAEMON ]; then
   echo "ERROR: Can't execute $DAEMON."

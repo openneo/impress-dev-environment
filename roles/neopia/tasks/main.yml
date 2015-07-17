@@ -1,0 +1,14 @@
+---
+- name: Download Neopia source
+  shell: bash -lc 'go get {{ neopia_module }}'
+
+- name: Install Neopia binary
+  shell: bash -lc 'go install {{ neopia_module }}'
+
+- name: Install Neopia daemon
+  template: src=init.d dest=/etc/init.d/neopia mode="u=rwx,go=rx"
+  notify: restart neopia
+
+- name: Configure Neopia nginx site
+  copy: src=neopia.conf dest=/etc/nginx/sites-enabled/
+  notify: reload nginx
