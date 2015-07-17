@@ -19,11 +19,15 @@
 - name: Install Dress to Impress gems
   bundler: state=present exclude_groups=production chdir={{ app_root }}
 
+- name: Create Impress database
+  mysql_db: name=impress
+  register: impress_create_db
+
 - name: Bootstrap Impress database
-  shell: bundle exec rake db:create db:schema:load db:seed
+  shell: bundle exec rake db:schema:load db:seed
   args:
     chdir: "{{ app_root }}"
-  run_once: true
+  when: impress_create_db.changed
 
 - name: Install Redis server
   apt: name=redis-server state=latest
