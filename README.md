@@ -13,23 +13,26 @@ First off: if you don't have the Git client on your computer yet, that's importa
   [git-install]: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 
 
-### Installing Vagrant + Ansible
+### Installing Virtualbox + Vagrant + Ansible
 
 To keep the environment consistent, automatically reproducible, and far away from the other stuff on your machine, we develop Dress to Impress inside a virtual machine. [Vagrant][vagrant] and [Ansible][ansible] help us create and manage this VM so that the process is transparent to you :)
 
-1. [Install the latest version of Vagrant.][vagrant-install] This will help you create the VM itself.
-2. [Install the development version of Ansible.][ansible-install] This will help you install Dress to Impress onto the VM.
+1. [Install the latest version of Virtualbox.][virtualbox-install] This will help you run the VM.
+2. [Install the latest version of Vagrant.][vagrant-install] This will help you create the VM itself.
+3. [Install the development version of Ansible.][ansible-install] This will help you install Dress to Impress onto the VM.
     * We use features from Ansible 2.0 (like the [Bundler module](http://docs.ansible.com/bundler_module.html)), but 2.0 was in development at time of writing, so we used the development branch.
     * If a stable build of 2.x is available now, try that instead.
+    * When building from source, don't forget to install the Jinja2 dependency.
 
 For example, on Ubuntu, the install process looks something like this:
 
-    sudo apt-get install vagrant
+    sudo apt-get install virtualbox vagrant python-jinja2
     cd ~
     git clone git://github.com/ansible/ansible.git --recursive
-    echo -e '\nsource ~/ansible/hacking/env-setup > /dev/null' >> ~/.bashrc
+    echo -e '\nsource ~/ansible/hacking/env-setup -q' >> ~/.bashrc
     bash
 
+  [virtualbox-install]: https://www.virtualbox.org/wiki/Linux_Downloads
   [vagrant]: https://www.vagrantup.com/
   [vagrant-install]: https://www.vagrantup.com/downloads.html
   [ansible]: http://docs.ansible.com/index.html
@@ -47,7 +50,9 @@ First, clone this repository to your local machine, anywhere you like.
 
 Next, install the Ansible modules that we depend on:
 
-    sudo ansible-galaxy install -r requirements.txt
+(We're using `v1` in there because, at time of writing, version 2 of `ansible-galaxy` is broken. If you're on a stable release, though, you should be able to safely drop it from the path :D)
+
+    sudo bash -lc 'source ~/ansible/v1/hacking/env-setup && ansible-galaxy install -r requirements.txt '
 
 Now we're ready to create a Dress to Impress VM. This might take a few minutes.
 
