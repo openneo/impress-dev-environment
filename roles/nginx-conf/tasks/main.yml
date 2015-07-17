@@ -2,6 +2,7 @@
 - name: Read passenger_root from system config
   shell: /usr/bin/passenger-config --root
   register: passenger_root
+  changed_when: false
 
 - name: Remove default site configuration
   file: path=/etc/nginx/sites-enabled/default state=absent

@@ -1,9 +1,14 @@
 ---
-- name: Download Neopia source
-  shell: bash -lc 'go get {{ neopia_module }}'
+- shell: bash -lc 'echo $GOPATH'
+  register: gopath
+  changed_when: false
+
+- stat: path={{ gopath.stdout }}/bin/neopia
+  register: neopia_bin
 
 - name: Install Neopia binary
   shell: bash -lc 'go install {{ neopia_module }}'
+  when: not neopia_bin.stat.exists
 
 - name: Install Neopia daemon
   template: src=init.d dest=/etc/init.d/neopia mode="u=rwx,go=rx"
