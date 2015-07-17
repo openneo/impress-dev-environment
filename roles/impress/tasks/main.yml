@@ -1,10 +1,4 @@
 ---
-- name: Bootstrap Dress to Impress workspace
-  # We want developers to be able to work in apps/impress.
-  # So, we don't control the pull process (update=no).
-  local_action: git repo=https://github.com/openneo/impress dest=apps/impress update=no
-  sudo: false
-
 - name: Bootstrap Dress to Impress ENV variables
   # If you override env.yml, we won't replace it. (force=no)
   local_action: template src={{ role_path }}/defaults/env.yml.example dest={{ role_path }}/defaults/env.yml force=no

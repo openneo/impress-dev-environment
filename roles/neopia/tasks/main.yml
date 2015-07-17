@@ -3,11 +3,24 @@
   register: gopath
   changed_when: false
 
+- set_fact:
+    neopia_module: "{{ neopia_module_owner }}/{{ neopia_module_name }}"
+    neopia_owner_src_path: "{{ gopath.stdout }}/src/{{ neopia_module_owner }}"
+
+- set_fact:
+    neopia_src_path: "{{ neopia_owner_src_path }}/{{ neopia_module_name }}"
+
+- name: Create OpenNeo source directory in GOPATH
+  file: dest={{ neopia_owner_src_path }} state=directory
+
+- name: Link Neopia source directory to GOPATH
+  file: src={{ neopia_app_root }} dest={{ neopia_src_path }} state=link
+
 - stat: path={{ gopath.stdout }}/bin/neopia
   register: neopia_bin
 
 - name: Install Neopia binary
-  shell: bash -lc 'go get {{ neopia_module }}'
+  shell: bash -lc 'go install {{ neopia_module }}'
   when: not neopia_bin.stat.exists
 
 - name: Install Neopia daemon

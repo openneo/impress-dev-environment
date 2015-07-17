@@ -1,4 +1,9 @@
 ---
 dependencies:
+  - role: workspace
+    workspace_app_name: Neopia
+    workspace_app_slug: neopia
+    workspace_repo: https://github.com/openneo/neopia
+
   - joshualund.golang
   - geerlingguy.git

@@ -1,0 +1,6 @@
+---
+- name: Bootstrap {{ workspace_app_name }} workspace
+  # We want developers to be able to work in apps/impress.
+  # So, we don't control the pull process (update=no).
+  local_action: git repo={{ workspace_repo }} dest=apps/{{ workspace_app_slug }} update=no
+  sudo: false

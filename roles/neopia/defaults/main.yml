@@ -1,6 +1,7 @@
 ---
-neopia_module: github.com/openneo/neopia
+neopia_app_root: /vagrant/apps/neopia
+neopia_module_owner: github.com/openneo
+neopia_module_name: neopia
 neopia_pidfile_path: /var/run/neopia.pid
 neopia_ping_interval: 600
 neopia_port: 3200
-neopia_source_path: /usr/local/share/neopia
