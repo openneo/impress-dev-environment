@@ -28,6 +28,7 @@ For example, on Ubuntu, the install process looks something like this:
     cd ~
     git clone git://github.com/ansible/ansible.git --recursive
     echo -e '\nsource ~/ansible/hacking/env-setup > /dev/null' >> ~/.bashrc
+    bash
 
   [vagrant]: https://www.vagrantup.com/
   [vagrant-install]: https://www.vagrantup.com/downloads.html
