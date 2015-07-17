@@ -7,7 +7,7 @@
   register: neopia_bin
 
 - name: Install Neopia binary
-  shell: bash -lc 'go install {{ neopia_module }}'
+  shell: bash -lc 'go get {{ neopia_module }}'
   when: not neopia_bin.stat.exists
 
 - name: Install Neopia daemon
