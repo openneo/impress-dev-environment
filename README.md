@@ -24,9 +24,10 @@ To keep the environment consistent, automatically reproducible, and far away fro
     * If a stable build of 2.x is available now, try that instead.
     * When building from source, don't forget to install the Jinja2 dependency.
 
-For example, on Ubuntu, the install process looks something like this:
+For example, on 64-bit Ubuntu, the install process looks something like this:
 
-    sudo apt-get install virtualbox vagrant python-jinja2
+    URL='https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.3_x86_64.deb'; FILE=`mktemp`; wget "$URL" -qO $FILE && sudo dpkg -i $FILE; rm $FILE
+    sudo apt-get install virtualbox python-jinja2
     cd ~
     git clone git://github.com/ansible/ansible.git --recursive
     echo -e '\nsource ~/ansible/hacking/env-setup -q' >> ~/.bashrc
@@ -47,6 +48,11 @@ First, clone this repository to your local machine, anywhere you like.
 
     git clone https://github.com/openneo/impress-dev-environment.git
     cd impress-dev-environment
+
+Next, download the Vagrant box and plugins we'll use. This might take a few minutes.
+
+    vagrant box add ubuntu/trusty64
+    vagrant plugin install hostmanager
 
 Next, install the Ansible modules that we depend on:
 
