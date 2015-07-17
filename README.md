@@ -52,7 +52,7 @@ First, clone this repository to your local machine, anywhere you like.
 Next, download the Vagrant box and plugins we'll use. This might take a few minutes.
 
     vagrant box add ubuntu/trusty64
-    vagrant plugin install hostmanager
+    vagrant plugin install vagrant-hostmanager
 
 Next, install the Ansible modules that we depend on:
 
