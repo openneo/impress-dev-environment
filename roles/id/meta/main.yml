@@ -1,0 +1,11 @@
+---
+dependencies:
+  - role: workspace
+    workspace_app_name: OpenNeo ID
+    workspace_app_slug: id
+    workspace_repo: https://github.com/openneo/id
+
+  - laggyluke.nodejs  # rails execjs runtime
+  - mysql
+  - ruby
+  - nginx-conf

@@ -1,0 +1,17 @@
+---
+- name: Install OpenNeo ID gems
+  bundler: state=present exclude_groups=production chdir={{ id_root }}
+
+- name: Create OpenNeo ID database
+  mysql_db: name=id
+  register: id_create_db
+
+- name: Bootstrap OpenNeo ID database
+  shell: bundle exec rake db:schema:load db:seed
+  args:
+    chdir: "{{ id_root }}"
+  when: id_create_db.changed
+
+- name: Configure OpenNeo ID nginx site
+  template: src=id.conf dest=/etc/nginx/sites-enabled/
+  notify: reload nginx

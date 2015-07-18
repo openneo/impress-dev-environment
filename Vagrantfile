@@ -13,7 +13,7 @@ Vagrant.configure(2) do |config|
 
   config.hostmanager.enabled = true
   config.hostmanager.manage_host = true
-  config.hostmanager.aliases = %w(impress.dev.openneo.net neopia.dev.openneo.net)
+  config.hostmanager.aliases = %w(impress.dev.openneo.net neopia.dev.openneo.net id.dev.openneo.net)
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on

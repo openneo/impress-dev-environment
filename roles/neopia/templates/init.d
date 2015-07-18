@@ -4,7 +4,7 @@ GOPATH=$(sudo bash -lc 'echo $GOPATH')
 
 SERVICE_NAME=neopia
 DAEMON=$GOPATH/bin/neopia
-DAEMON_OPTS="--port={{ neopia_port }} --impress=localhost --pingInterval={{ neopia_ping_interval }}"
+DAEMON_OPTS="--port={{ neopia_port }} --impress=impress.dev.openneo.net --pingInterval={{ neopia_ping_interval }}"
 PIDFILE={{ neopia_pidfile_path }}
 
 if [ ! -x $DAEMON ]; then
