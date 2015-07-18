@@ -6,6 +6,7 @@ dependencies:
     workspace_repo: https://github.com/openneo/impress
 
   - geerlingguy.git  # some of our gems are cloned directly from github
+  - Stouts.elasticsearch
   - laggyluke.nodejs  # rails execjs runtime
   - mysql
   - ruby

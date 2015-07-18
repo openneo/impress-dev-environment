@@ -23,6 +23,15 @@
     chdir: "{{ app_root }}"
   when: impress_create_db.changed
 
+- name: Bootstrap Impress Elasticsearch index
+  # This one's kinda cheating.
+  # We assume that the db and ES index are being created at the same time.
+  # It's a decent assumption, but it'd be better to check the ES index instead.
+  shell: bundle exec rake flex:create_indices
+  args:
+    chdir: "{{ app_root }}"
+  when: impress_create_db.changed
+
 - name: Install Redis server
   apt: name=redis-server state=latest
 
