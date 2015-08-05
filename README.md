@@ -18,9 +18,12 @@ First off: if you don't have the Git client on your computer yet, that's importa
 To keep the environment consistent, automatically reproducible, and far away from the other stuff on your machine, we develop Dress to Impress inside a virtual machine. [Vagrant][vagrant] and [Ansible][ansible] help us create and manage this VM so that the process is transparent to you :)
 
 1. [Install the latest version of Virtualbox.][virtualbox-install] This will help you run the VM.
+    * Known to work with Virtualbox 4.3.28.
 2. [Install the latest version of Vagrant.][vagrant-install] This will help you create the VM itself.
+    * Known to work with Vagrant 1.7.3.
 3. [Install the development version of Ansible.][ansible-install] This will help you install Dress to Impress onto the VM.
     * We use features from Ansible 2.0 (like the [Bundler module](http://docs.ansible.com/bundler_module.html)), but 2.0 was in development at time of writing, so we used the development branch.
+    * Known to work with commit 37e38924de3473da32a85e7145745118bf83247a.
     * If a stable build of 2.x is available now, try that instead.
     * When building from source, don't forget to install the Jinja2 dependency.
 
@@ -56,9 +59,7 @@ Next, download the Vagrant box and plugins we'll use. This might take a few minu
 
 Next, install the Ansible modules that we depend on:
 
-(We're using `v1` in there because, at time of writing, version 2 of `ansible-galaxy` is broken. If you're on a stable release, though, you should be able to safely drop it from the path :D)
-
-    sudo bash -lc 'source ~/ansible/v1/hacking/env-setup && ansible-galaxy install -r requirements.txt '
+    ansible-galaxy install -r requirements.txt
 
 Now we're ready to create a Dress to Impress VM. This might take a few minutes.
 
@@ -69,6 +70,8 @@ If all goes well, then, hooray! We're done! Now you can visit [impress.dev.openn
 ## Development
 
 Lots more to talk about in here. The gist is that `apps/impress` is the main app, and changes in there will automatically propagate to the live copy of the app. `apps/neopia` is the app that runs the pet loading API, and loading new code is a bit trickier: for now, you'll wanna `sudo -i`, then `go install github.com/openneo/neopia`, then `service neopia restart`, then `exit` to get out of scary sudo mode. The details of all this and running all the various components will probably get expanded out into wiki pages if there's sufficient interest in contributing :)
+
+We clone the public `openneo/impress` repository into `apps/impress` by default. If you want to develop against your own fork, delete the `apps/impress` directory and clone your fork there in its place.
 
 
 ### Known Issues
