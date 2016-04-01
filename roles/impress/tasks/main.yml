@@ -17,6 +17,9 @@
   mysql_db: name=impress
   register: impress_create_db
 
+- name: Create database.yml
+  copy: src=database.yml dest={{ app_root }}/config/
+
 - name: Bootstrap Impress database
   shell: bundle exec rake db:schema:load db:seed
   args:
